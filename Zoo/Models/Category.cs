@@ -14,9 +14,10 @@ namespace Zoo.Models
         public string Name { get; set; }
 
 
-        public Category()
+        public Category(int id , string name)
         {
-
+            Id = id;
+            Name= name;
         }
         public override string ToString()
         {

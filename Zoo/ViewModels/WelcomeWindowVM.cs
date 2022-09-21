@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.Data.SqlClient;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
@@ -17,18 +18,56 @@ namespace Zoo.ViewModels
     {
         //private User user;
         private List<Animal> animals;
+        private List<Animal> animalsByCategory;
+       
         private DelegateCommand selectAnimalsCommand;
         private DelegateCommand searchAnimalsByCategoryCommand;
-        private List<Category> categories;
-        private Category selectedCategory;
+        private List<Animal> categories;
+        private Animal selectedCategory;
+        private CategoryDbContext categoryDbContext = new CategoryDbContext();
+        private AnimalDbContext animalDbContext = new AnimalDbContext();
         public WelcomeWindowVM()
         {
             animals = new List<Animal>();
-            categories = new List<Category>();
+            categories = new List<Animal>();
             //fillAnimals();
-            fillCategories();            
+            FillCategories();            
         }
-        public Category SelectedCategory
+
+
+        public List<Animal> AnimalsByCategory
+        {
+            get { return animalsByCategory; }
+            set 
+            { 
+                animalsByCategory = value;
+                OnPropertyChanged("AnimalsByCategory");
+            }
+        }
+        public CategoryDbContext CategoryDbContext
+        {
+            get { 
+                return categoryDbContext;
+                }
+            set { 
+                categoryDbContext = value; 
+                OnPropertyChanged("CategoryDbContext");
+                }
+        }
+        public AnimalDbContext AnimalDbContext
+        {
+            get
+            {
+                return animalDbContext;
+            }
+            set
+            {
+                animalDbContext = value;
+                OnPropertyChanged("AnimalDbContext");
+            }
+        }
+
+        public Animal SelectedCategory
         {
             get { return selectedCategory; }
             set 
@@ -42,7 +81,8 @@ namespace Zoo.ViewModels
             get
             {
                 return selectAnimalsCommand ?? (selectAnimalsCommand = new DelegateCommand(() =>
-                {                                        
+                {                              
+                        
                         Window window = new AnimalsWindow();
                         window.Show();
                         System.Windows.Application.Current.Windows[0].Close();                                          
@@ -57,12 +97,14 @@ namespace Zoo.ViewModels
                 {
                     if (SelectedCategory != null)
                     {
-                       
+                        GetAnimalByCategory();
+                        
                                                
                     }
                     else
                     {
-                        fillAnimals();
+                        
+                        FillAnimals();
                     }                                                      
                 }));
             }
@@ -82,7 +124,7 @@ namespace Zoo.ViewModels
             }
         }
 
-        public List<Category> Categories
+        public List<Animal> Categories
         {
             get
             {
@@ -94,19 +136,39 @@ namespace Zoo.ViewModels
                 OnPropertyChanged("Categories");
             }
         }
-        private void fillAnimals()
+        private void FillAnimals()
         {
-            AnimalDbContext context = new AnimalDbContext();
-            Animals = context.Animals.ToList();         
+            Animals = AnimalDbContext.Animals.ToList();       
         }
 
-        private void fillCategories()
+        private void FillCategories()
         {
-            CategoryDbContext context = new CategoryDbContext();
-            Categories = context.Categories.ToList();                       
+           
+            Categories = AnimalDbContext.Animals.ToList();                       
         }
 
 
+        private void GetAnimalByCategory()
+        {
+            Animals = (from a in AnimalDbContext.Animals where a.Category.Equals(SelectedCategory.Category) select a).ToList(); //.Distinct();
+            
+
+
+
+
+        }
+        /* private void DeleteCategoryIfExist()
+         {
+             int count = 0;
+             foreach(Animal animal in Animals)
+             {
+                 if (animal.Category.Equals(SelectedCategory.Category))
+                     {
+                     count++;
+                     }
+                 if(count > 0)
+             }
+         }*/
 
     }
 }

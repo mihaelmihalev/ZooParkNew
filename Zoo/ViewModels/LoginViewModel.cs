@@ -1,5 +1,6 @@
 ﻿
 //using MongoDB.Driver.Core.Configuration;
+using Microsoft.Data.SqlClient;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace Zoo
 
         public LoginViewModel()
         {
-            
+
         }
 
         public ICommand LoginCommand
@@ -98,5 +99,7 @@ namespace Zoo
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+
     }
 }
