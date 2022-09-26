@@ -16,163 +16,74 @@ namespace Zoo.ViewModels
 {
     internal class WelcomeWindowVM : BaseVM
     {
-        //private User user;
+        /*private User user;
         private List<Animal> animals;
-        private List<Animal> animalsByCategory;
-       
-        private DelegateCommand selectAnimalsCommand;
+        private List<Animal> animalsByCategory;     
+        
+        
         private DelegateCommand searchAnimalsByCategoryCommand;
         private List<Animal> categories;
-        private Animal selectedCategory;
+        private Animal selectedCategory;*/
         private CategoryDbContext categoryDbContext = new CategoryDbContext();
         private AnimalDbContext animalDbContext = new AnimalDbContext();
+        private DelegateCommand selectAnimalsCommand;
+        private DelegateCommand selectEventsCommand;
+        private DelegateCommand selectTicketsCommand;
         public WelcomeWindowVM()
         {
-            animals = new List<Animal>();
+            /*animals = new List<Animal>();
             categories = new List<Animal>();
             //fillAnimals();
-            FillCategories();            
+            FillCategories();    */
         }
-
-
-        public List<Animal> AnimalsByCategory
-        {
-            get { return animalsByCategory; }
-            set 
-            { 
-                animalsByCategory = value;
-                OnPropertyChanged("AnimalsByCategory");
-            }
-        }
-        public CategoryDbContext CategoryDbContext
-        {
-            get { 
-                return categoryDbContext;
-                }
-            set { 
-                categoryDbContext = value; 
-                OnPropertyChanged("CategoryDbContext");
-                }
-        }
-        public AnimalDbContext AnimalDbContext
-        {
-            get
-            {
-                return animalDbContext;
-            }
-            set
-            {
-                animalDbContext = value;
-                OnPropertyChanged("AnimalDbContext");
-            }
-        }
-
-        public Animal SelectedCategory
-        {
-            get { return selectedCategory; }
-            set 
-            {
-                selectedCategory = value;
-                OnPropertyChanged("SelectedCategory");
-            }
-        }
+                      
         public DelegateCommand SelectAnimalsCommand
         {
             get
             {
                 return selectAnimalsCommand ?? (selectAnimalsCommand = new DelegateCommand(() =>
-                {                              
-                        
-                        Window window = new AnimalsWindow();
-                        window.Show();
-                        System.Windows.Application.Current.Windows[0].Close();                                          
-                }));
-            }
-        }
-        public DelegateCommand SearchAnimalsByCategoryCommand
-        {
-            get
-            {
-                return searchAnimalsByCategoryCommand ?? (searchAnimalsByCategoryCommand = new DelegateCommand(() =>
                 {
-                    if (SelectedCategory != null)
-                    {
-                        GetAnimalByCategory();
-                        
-                                               
-                    }
-                    else
-                    {
-                        
-                        FillAnimals();
-                    }                                                      
+
+                    Window window = new AnimalsWindow();
+                    window.Show();
+                    System.Windows.Application.Current.Windows[0].Close();
                 }));
             }
         }
-
-
-        public List<Animal> Animals
+        public DelegateCommand SelectTicketsCommand
         {
             get
             {
-                return animals;
-            }
-            set
-            {
-                animals = value;
-                OnPropertyChanged("Animals");
+                return selectTicketsCommand ?? (selectTicketsCommand = new DelegateCommand(() =>
+                {
+
+                    //Window window = new TicketsWindow();
+                   // window.Show();
+                   // System.Windows.Application.Current.Windows[0].Close();
+                }));
             }
         }
-
-        public List<Animal> Categories
+        public DelegateCommand SelectEventsCommand
         {
             get
             {
-                return categories;
+                return selectEventsCommand ?? (selectEventsCommand = new DelegateCommand(() =>
+                {
+
+                    Window window = new EventsWindow();
+                    window.Show();
+                    System.Windows.Application.Current.Windows[0].Close();
+                }));
             }
-            set
-            {
-                categories = value;
-                OnPropertyChanged("Categories");
-            }
         }
-        private void FillAnimals()
-        {
-            Animals = AnimalDbContext.Animals.ToList();       
-        }
-
-        private void FillCategories()
-        {
-           
-            Categories = AnimalDbContext.Animals.ToList();                       
-        }
-
-
-        private void GetAnimalByCategory()
-        {
-            Animals = (from a in AnimalDbContext.Animals where a.Category.Equals(SelectedCategory.Category) select a).ToList(); //.Distinct();
-            
-
-
-
-
-        }
-        /* private void DeleteCategoryIfExist()
-         {
-             int count = 0;
-             foreach(Animal animal in Animals)
-             {
-                 if (animal.Category.Equals(SelectedCategory.Category))
-                     {
-                     count++;
-                     }
-                 if(count > 0)
-             }
-         }*/
-
     }
 }
 
+    
+
+    
+
+      
 
 
-
+       

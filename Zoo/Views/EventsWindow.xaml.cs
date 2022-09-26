@@ -16,14 +16,14 @@ using Zoo.ViewModels;
 namespace Zoo.Views
 {
     /// <summary>
-    /// Interaction logic for AnimalsWindow.xaml
+    /// Interaction logic for EventsWindow.xaml
     /// </summary>
-    public partial class AnimalsWindow : Window
+    public partial class EventsWindow : Window
     {
-        public AnimalsWindow()
+        public EventsWindow()
         {
-            InitializeComponent();          
-            DataContext = new AnimalsWindowVM();
+            InitializeComponent();
+            DataContext  = new EventsWindowVM();
         }
     }
 }

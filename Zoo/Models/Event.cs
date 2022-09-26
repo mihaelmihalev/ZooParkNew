@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Zoo.Models
 {
-    internal class Event
+    public class Event
     {
+        public int Id { get; set; } 
+        public string Description { get; set; }
+        public string Type { get; set; }    
+        public Event()
+        {
+
+        }
+
     }
 }
