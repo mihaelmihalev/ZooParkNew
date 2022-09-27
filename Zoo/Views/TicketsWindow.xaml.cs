@@ -13,17 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Zoo.ViewModels;
 
-namespace Zoo
+namespace Zoo.Views
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for TicketsWindow.xaml
     /// </summary>
-    public partial class WelcomeWindow : Window
+    public partial class TicketsWindow : Window
     {
-        public WelcomeWindow()
+        public TicketsWindow()
         {
             InitializeComponent();
-            DataContext = new WelcomeWindowVM();
+            DataContext = new TicketsWindowVM();
         }
     }
 }

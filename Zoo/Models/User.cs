@@ -11,10 +11,7 @@ namespace Zoo.Models
         public string password { get; set; }
         public string username { get; set; }
 
-        public User()
-        {
-
-        }
+       
     }
 }
 

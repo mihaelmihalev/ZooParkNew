@@ -14,29 +14,18 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Zoo.ViewModels
 {
-    internal class WelcomeWindowVM : BaseVM
+    public class WelcomeWindowVM : BaseVM
     {
-        /*private User user;
-        private List<Animal> animals;
-        private List<Animal> animalsByCategory;     
-        
-        
-        private DelegateCommand searchAnimalsByCategoryCommand;
-        private List<Animal> categories;
-        private Animal selectedCategory;*/
+        #region Private Fields
         private CategoryDbContext categoryDbContext = new CategoryDbContext();
         private AnimalDbContext animalDbContext = new AnimalDbContext();
         private DelegateCommand selectAnimalsCommand;
         private DelegateCommand selectEventsCommand;
         private DelegateCommand selectTicketsCommand;
-        public WelcomeWindowVM()
-        {
-            /*animals = new List<Animal>();
-            categories = new List<Animal>();
-            //fillAnimals();
-            FillCategories();    */
-        }
-                      
+        #endregion
+        
+        #region  Commands
+       
         public DelegateCommand SelectAnimalsCommand
         {
             get
@@ -57,9 +46,9 @@ namespace Zoo.ViewModels
                 return selectTicketsCommand ?? (selectTicketsCommand = new DelegateCommand(() =>
                 {
 
-                    //Window window = new TicketsWindow();
-                   // window.Show();
-                   // System.Windows.Application.Current.Windows[0].Close();
+                    Window window = new TicketsWindow();
+                    window.Show();
+                    System.Windows.Application.Current.Windows[0].Close();
                 }));
             }
         }
@@ -76,6 +65,8 @@ namespace Zoo.ViewModels
                 }));
             }
         }
+#endregion
+
     }
 }
 

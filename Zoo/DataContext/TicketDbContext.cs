@@ -8,7 +8,7 @@ using Zoo.Models;
 
 namespace Zoo
 {
-    public class EventDbContext : Microsoft.EntityFrameworkCore.DbContext
+    public class TicketDbContext : Microsoft.EntityFrameworkCore.DbContext
     {
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -17,7 +17,7 @@ namespace Zoo
 
             options.UseSqlServer(@"Data Source=.\SQLEXPRESS00;Initial Catalog=ZooPark;Integrated Security=True");
         }
-        public DbSet<Event> Events { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
     }
 }
 

@@ -12,23 +12,21 @@ using System.Windows;
 using System.Windows.Input;
 using Zoo;
 using Zoo.Models;
-
+using Zoo.ViewModels;
 
 namespace Zoo
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : BaseVM
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        #region Private Fields
         private String username;
         private String password;
         private User user;
         private DelegateCommand loginCommand;
+        private UserDbContext userDbContext = new UserDbContext();
+        #endregion
 
-        public LoginViewModel()
-        {
-
-        }
-
+        #region Commands
         public ICommand LoginCommand
         {
             get
@@ -45,8 +43,8 @@ namespace Zoo
                     }
                     else
                     {
-                        UserDbContext context = new UserDbContext();
-                        user = context.Users.FirstOrDefault(u => u.username == this.Username && u.password == this.Password);
+                        
+                        user = userDbContext.Users.FirstOrDefault(u => u.username == this.Username && u.password == this.Password);
 
                         if (user != null)
                         {
@@ -60,9 +58,12 @@ namespace Zoo
                         }
                     }
                 }));
+
             }
         }
+        #endregion
 
+        #region Properties
         public String Username
         {
             get
@@ -88,18 +89,6 @@ namespace Zoo
                 OnPropertyChanged("Password");
             }
         }
-
-
-        private void OnPropertyChanged(String propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-
+        #endregion
     }
 }

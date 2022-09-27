@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace Zoo.Models
 {
-    public class Event
+    public class Ticket
     {
         public int Id { get; set; } 
-        public string Description { get; set; }
-        public string Type { get; set; }    
-       
+        public string Type { get; set; }
+
         public override string ToString()
         {
             return Type.ToString();
         }
-
     }
 }
