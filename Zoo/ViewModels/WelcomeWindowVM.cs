@@ -18,24 +18,50 @@ namespace Zoo.ViewModels
     {
         #region Private Fields
         private CategoryDbContext categoryDbContext = new CategoryDbContext();
-        private AnimalDbContext animalDbContext = new AnimalDbContext();
+        private AnimalDbContext animalDbContext = new AnimalDbContext();       
         private DelegateCommand selectAnimalsCommand;
         private DelegateCommand selectEventsCommand;
         private DelegateCommand selectTicketsCommand;
+        private BaseVM currentViewModel;
         #endregion
-        
+
+        #region Constructor
+        public WelcomeWindowVM()
+        {            
+            currentViewModel = new AnimalsWindowVM();
+            
+          
+
+        }
+        #endregion
+
+        #region Properties
+        public BaseVM CurrentViewModel
+        {
+            get { return currentViewModel; }
+            set 
+            { 
+                CurrentViewModel = value; 
+                OnPropertyChanged(nameof(CurrentViewModel));
+            }
+        }
+        #endregion
+
         #region  Commands
-       
+
         public DelegateCommand SelectAnimalsCommand
         {
             get
             {
                 return selectAnimalsCommand ?? (selectAnimalsCommand = new DelegateCommand(() =>
                 {
-
-                    Window window = new AnimalsWindow();
-                    window.Show();
-                    System.Windows.Application.Current.Windows[0].Close();
+                    currentViewModel = new AnimalsWindowVM();
+                    /*AnimalsWindowVM x = new AnimalsWindowVM();
+                    AnimalsWindow window = new AnimalsWindow();
+                    window.DataContext = x;*/
+                    //Window window = new AnimalsWindow();
+                    //window.Show();
+                    //System.Windows.Application.Current.Windows[0].Close();
                 }));
             }
         }

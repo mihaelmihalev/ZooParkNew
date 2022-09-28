@@ -10,7 +10,6 @@
         <ImageBrush ImageSource="\Images\Welcome.jpg"></ImageBrush>
     </Window.Background>
     <Grid>
-
         <GroupBox Header="Вход" Height="110" Width="300" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="15,0,0,10">
             <Grid>
                 <Label Content="Потребителско име: " HorizontalAlignment="Left" VerticalAlignment="Top" Width="166"  Margin="0, 5, 0, 0"/>
@@ -20,8 +19,5 @@
                 <Button x:Name="loginBtn" Content="Вход" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="80" Height="20" Margin="0, 0, 0, 5" Command="{Binding LoginCommand}" />
             </Grid>
         </GroupBox>
-
-
-
     </Grid>
 </Window>

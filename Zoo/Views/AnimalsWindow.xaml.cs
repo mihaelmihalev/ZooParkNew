@@ -18,11 +18,11 @@ namespace Zoo.Views
     /// <summary>
     /// Interaction logic for AnimalsWindow.xaml
     /// </summary>
-    public partial class AnimalsWindow : Window
+    public partial class AnimalsWindow : UserControl
     {
         public AnimalsWindow()
         {
-            InitializeComponent();          
+            InitializeComponent();
             DataContext = new AnimalsWindowVM();
         }
     }

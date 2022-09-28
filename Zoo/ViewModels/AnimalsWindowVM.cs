@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,19 +25,20 @@ namespace Zoo.ViewModels
         private Animal selectedCategory;
         private CategoryDbContext categoryDbContext = new CategoryDbContext();
         private AnimalDbContext animalDbContext = new AnimalDbContext();
-        private DelegateCommand selectAnimalsCommand;
         private DelegateCommand selectEventsCommand;
         private DelegateCommand selectTicketsCommand;
         private DelegateCommand searchAnimalsByCategoryCommand;
         private bool isTextBoxVisible;
+       
         #endregion
 
         #region Constructor
 
         public AnimalsWindowVM()
-        {
+        {     
             isTextBoxVisible = false;
-            FillCategories();
+            FillCategories();            
+           // FillAnimalData();
 
         }
         #endregion
@@ -72,18 +74,6 @@ namespace Zoo.ViewModels
             {
                 animalsByCategory = value;
                 OnPropertyChanged("AnimalsByCategory");
-            }
-        }
-        public CategoryDbContext CategoryDbContext
-        {
-            get
-            {
-                return categoryDbContext;
-            }
-            set
-            {
-                categoryDbContext = value;
-                OnPropertyChanged("CategoryDbContext");
             }
         }
 
@@ -134,28 +124,11 @@ namespace Zoo.ViewModels
                     if (SelectedCategory != null)
                     {
                         GetAnimalByCategory();
-
-
                     }
                     else
                     {
-
                         FillAnimals();
                     }
-                }));
-            }
-        }
-
-        public DelegateCommand SelectAnimalsCommand
-        {
-            get
-            {
-                return selectAnimalsCommand ?? (selectAnimalsCommand = new DelegateCommand(() =>
-                {
-                    
-                    Window window = new AnimalsWindow();
-                    window.Show();
-                    System.Windows.Application.Current.Windows[0].Close();
                 }));
             }
         }
@@ -203,7 +176,7 @@ namespace Zoo.ViewModels
 
         private void GetAnimalByCategory()
         {
-            Animals = (from a in animalDbContext.Animals where a.Category.Equals(SelectedCategory.Category) select a).Distinct().ToList(); //.Distinct();
+            Animals = (from a in animalDbContext.Animals where a.Category.Equals(SelectedCategory.Category) select a).ToList(); //.Distinct();
         }
 
         private void ChangeTextBoxVisibality()
@@ -212,14 +185,24 @@ namespace Zoo.ViewModels
             {
                 IsTextBoxVisible = true;
             }
-           /* else
-            {
-                IsTextBoxVisible = false;
+        }
+       /* public void FillAnimalData()
+        {            
+                Animal animal1 = new Animal(1, "Лъв", "Хищници" , "Лъвът (Panthera leo) е едър хищник от семейство Коткови и един от четирите представители на род Пантери."
+                    , File.ReadAllBytes("C:/Users/mihael.mihalev/Desktop/Izpitvane/Zoo/Zoo/Images/lion.jpg"));
+                Animal animal2 = new Animal(2, "Маймуна","Бозайници", "Маймуните (Haplorrhini) са таксономичен подразред, който заедно с подразред Полумаймуни (Strepsirrhini) образуват разред Примати (Primates)."
+                    , File.ReadAllBytes("C:/Users/mihael.mihalev/Desktop/Izpitvane/Zoo/Zoo/Images/monkey.jpg"));
+                Animal animal3 = new Animal(3,"Змия","Влечуги", "Змиите са удължени, студенокръвни безкраки влечуги от подразред Serpentes, близки родственици на гущерите, с които спадат към един и същи разред – Люспести."
+                    , File.ReadAllBytes("C:/Users/mihael.mihalev/Desktop/Izpitvane/Zoo/Zoo/Images/snake.jpg"));
+                animalDbContext.Animals.Add(animal1);
+                animalDbContext.Animals.Add(animal2);
+                animalDbContext.Animals.Add(animal3);
+                animalDbContext.SaveChanges();
+                
             }*/
         }
         #endregion
 
-    }
-
-
 }
+
+

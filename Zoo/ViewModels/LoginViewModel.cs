@@ -33,18 +33,18 @@ namespace Zoo
             {
                 return loginCommand ?? (loginCommand = new DelegateCommand(() =>
                 {
-                    if (String.IsNullOrEmpty(this.username))
+                    if (String.IsNullOrEmpty(username))
                     {
                         MessageBox.Show("Моля, въведете име!");
                     }
-                    else if (String.IsNullOrEmpty(this.password))
+                    else if (String.IsNullOrEmpty(password))
                     {
                         MessageBox.Show("Моля, въведете парола!");
                     }
                     else
                     {
                         
-                        user = userDbContext.Users.FirstOrDefault(u => u.username == this.Username && u.password == this.Password);
+                        user = userDbContext.Users.FirstOrDefault(u => u.Username == Username && u.Password == Password);
 
                         if (user != null)
                         {

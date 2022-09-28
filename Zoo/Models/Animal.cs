@@ -14,9 +14,19 @@ namespace Zoo.Models
         public string Name { get; set; }
 
         public string Category { get; set; }
-       // public string Category { get; set; }
-        
-        // public Category Category { get; set; }
+
+        public string Description { get; set; }
+
+        public byte[] Image { get; set; }
+       
+        public Animal (int id , string name , string category , string description , byte[] image)
+        {
+            Id = id;
+            Name = name;
+            Category = category;
+            Description = description;
+            Image = image;
+        }
      
         public override string ToString()
         {

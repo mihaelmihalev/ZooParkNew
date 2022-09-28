@@ -51,36 +51,24 @@ namespace Zoo.ViewModels
                 Tickets = ticketDbContext.Tickets.ToList();
             }
         
-            public DelegateCommand SelectAnimalsCommand
-            {
-                get
-                {
-                    return selectAnimalsCommand ?? (selectAnimalsCommand = new DelegateCommand(() =>
-                    {
-
-                        Window window = new AnimalsWindow();
-                        window.Show();
-                        System.Windows.Application.Current.Windows[0].Close();
-                    }));
-                }
-            }
+            
         #endregion
 
         #region Commands
-        public DelegateCommand SelectTicketsCommand
+        public DelegateCommand SelectAnimalsCommand
+        {
+            get
             {
-                get
+                return selectAnimalsCommand ?? (selectAnimalsCommand = new DelegateCommand(() =>
                 {
-                    return selectTicketsCommand ?? (selectTicketsCommand = new DelegateCommand(() =>
-                    {
 
-                        Window window = new TicketsWindow();
-                        window.Show();
-                        System.Windows.Application.Current.Windows[0].Close();
-                    }));
-                }
+                    // Window window = new AnimalsWindow();
+                    // window.Show();
+                    //System.Windows.Application.Current.Windows[0].Close();
+                }));
             }
-            public DelegateCommand SelectEventsCommand
+        }        
+        public DelegateCommand SelectEventsCommand
             {
                 get
                 {
