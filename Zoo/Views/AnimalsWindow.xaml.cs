@@ -23,7 +23,6 @@ namespace Zoo.Views
         public AnimalsWindow()
         {
             InitializeComponent();
-            DataContext = new AnimalsWindowVM();
         }
     }
 }

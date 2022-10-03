@@ -18,12 +18,11 @@ namespace Zoo.Views
     /// <summary>
     /// Interaction logic for TicketsWindow.xaml
     /// </summary>
-    public partial class TicketsWindow : Window
+    public partial class TicketsWindow : UserControl
     {
         public TicketsWindow()
         {
-            InitializeComponent();
-            DataContext = new TicketsWindowVM();
+            InitializeComponent();           
         }
     }
 }

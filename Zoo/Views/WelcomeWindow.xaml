@@ -8,37 +8,48 @@
         xmlns:viewmodels="clr-namespace:Zoo.ViewModels"       
         mc:Ignorable="d"
         Title="Избор" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewmodels:AnimalsWindowVM}">
+                <views:AnimalsWindow/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:EventsWindowVM}">
+                <views:EventsWindow/>
+            </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:TicketsWindowVM}">
+            <views:TicketsWindow/>
+        </DataTemplate>
+    </Window.Resources>
     <Window.Background>
         <ImageBrush ImageSource="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\background.jpg"></ImageBrush>
     </Window.Background>
-    <Window.Resources>
-    </Window.Resources>
-    <Grid Margin="60,60,60,60" Height="600" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+    <Grid Margin="60,60,60,60" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="31*" />
-                <ColumnDefinition Width="18*" />
-                <ColumnDefinition Width="33*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button  Name="btnAnimals" BorderBrush="White" BorderThickness="4" Content="Животни"  Grid.Column="0" HorizontalAlignment="Left" Width="200" Height="100" VerticalAlignment="Top" Margin="4,10,0,0" Command="{Binding SelectAnimalsCommand}" Grid.RowSpan="3" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,1">
+            <Button Background="Transparent" Name="btnAnimals" BorderBrush="White" BorderThickness="4" Content="Животни" Foreground="Yellow" FontSize="30" Grid.Column="0" HorizontalAlignment="Left" Width="200" Height="100" VerticalAlignment="Top" Margin="4,10,0,0" 
+                     Command="{Binding UpdateViewCommand}" CommandParameter="Animals" Grid.RowSpan="3" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,1">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Name="btnEvents" BorderBrush="White" BorderThickness="4" Content="Събития"  Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="100" VerticalAlignment="Top" Margin="0,10,0,0" Command="{Binding SelectEventsCommand}" Grid.RowSpan="3">
+            <Button Name="btnEvents" Background="Transparent" BorderBrush="GreenYellow" BorderThickness="4" Content="Събития" Foreground="Yellow" FontSize="30"  Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="100" VerticalAlignment="Top" Margin="0,10,0,0" Command="{Binding UpdateViewCommand}" CommandParameter="Events" Grid.RowSpan="3">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Name="btnTickets" BorderBrush="White" BorderThickness="4" Content="Билети" Grid.Column="2" HorizontalAlignment="Right" Width="200" Height="100" VerticalAlignment="Top" Margin="0,10,3,0" Command="{Binding SelectTicketsCommand}" Grid.RowSpan="3">
+            <Button Name="btnTickets"  Background="Transparent" Foreground="Yellow" FontSize="30" BorderBrush="Red" BorderThickness="4" Content="Билети" Grid.Column="2" HorizontalAlignment="Right" Width="200" Height="100" VerticalAlignment="Top" Margin="0,10,3,0" Command="{Binding UpdateViewCommand}" CommandParameter="Tickets" Grid.RowSpan="3">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -46,23 +57,9 @@
                 </Button.Resources>
             </Button>
         </Grid>
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-        </Grid>
-        <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type viewmodels:AnimalsWindowVM}">
-                    <views:AnimalsWindow/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:EventsWindowVM}">
-                    <views:EventsWindow/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:TicketsWindowVM}">
-                    <views:TicketsWindow/>
-                </DataTemplate>
-            </ContentControl.Resources>
+
+        <ContentControl  Grid.Row="1" Content="{Binding  SelectedViewModel}">
+
         </ContentControl>
     </Grid>
 </Window>

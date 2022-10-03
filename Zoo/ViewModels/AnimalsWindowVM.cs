@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Zoo.Commands;
 using Zoo.Models;
 using Zoo.Views;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -23,13 +24,14 @@ namespace Zoo.ViewModels
         private List<Animal> categories;
         private Animal selectedAnimal;
         private Animal selectedCategory;
-        private CategoryDbContext categoryDbContext = new CategoryDbContext();
+        //private CategoryDbContext categoryDbContext = new CategoryDbContext();
         private AnimalDbContext animalDbContext = new AnimalDbContext();
         private DelegateCommand selectEventsCommand;
         private DelegateCommand selectTicketsCommand;
         private DelegateCommand searchAnimalsByCategoryCommand;
         private bool isTextBoxVisible;
-       
+
+
         #endregion
 
         #region Constructor
@@ -37,13 +39,14 @@ namespace Zoo.ViewModels
         public AnimalsWindowVM()
         {     
             isTextBoxVisible = false;
-            FillCategories();            
-           // FillAnimalData();
+            FillCategories();
+            // FillAnimalData();
 
         }
         #endregion
 
         #region Properties
+
         public bool IsTextBoxVisible
         {
             get { return isTextBoxVisible; }
@@ -132,32 +135,7 @@ namespace Zoo.ViewModels
                 }));
             }
         }
-        public DelegateCommand SelectTicketsCommand
-        {
-            get
-            {
-                return selectTicketsCommand ?? (selectTicketsCommand = new DelegateCommand(() =>
-                {
-
-                    Window window = new TicketsWindow();
-                    window.Show();
-                    System.Windows.Application.Current.Windows[0].Close();
-                }));
-            }
-        }
-        public DelegateCommand SelectEventsCommand
-        {
-            get
-            {
-                return selectEventsCommand ?? (selectEventsCommand = new DelegateCommand(() =>
-                {
-
-                    Window window = new EventsWindow();
-                    window.Show();
-                    System.Windows.Application.Current.Windows[0].Close();
-                }));
-            }
-        }
+          
         #endregion
 
         #region Methods

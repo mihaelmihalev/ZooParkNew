@@ -55,32 +55,10 @@ namespace Zoo.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand SelectAnimalsCommand
-        {
-            get
-            {
-                return selectAnimalsCommand ?? (selectAnimalsCommand = new DelegateCommand(() =>
-                {
-
-                    // Window window = new AnimalsWindow();
-                    // window.Show();
-                    //System.Windows.Application.Current.Windows[0].Close();
-                }));
-            }
-        }        
-        public DelegateCommand SelectEventsCommand
-            {
-                get
-                {
-                    return selectEventsCommand ?? (selectEventsCommand = new DelegateCommand(() =>
-                    {
-
-                        Window window = new EventsWindow();
-                        window.Show();
-                        System.Windows.Application.Current.Windows[0].Close();
-                    }));
-                }
-            }
+        
+       
+                
+            
         #endregion
     }
 

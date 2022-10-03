@@ -18,12 +18,12 @@ namespace Zoo.Views
     /// <summary>
     /// Interaction logic for EventsWindow.xaml
     /// </summary>
-    public partial class EventsWindow : Window
+    public partial class EventsWindow : UserControl
     {
         public EventsWindow()
         {
             InitializeComponent();
-            DataContext  = new EventsWindowVM();
+            
         }
     }
 }

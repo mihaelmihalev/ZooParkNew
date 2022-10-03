@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Zoo.Views"
         xmlns:viewmodels="clr-namespace:Zoo.ViewModels"
         mc:Ignorable="d"
-        Background="Transparent" Height="914" Width="1438">
+        Background="Transparent">
     <UserControl.DataContext>
         <viewmodels:AnimalsWindowVM/>
     </UserControl.DataContext>
@@ -14,94 +14,93 @@
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="boolToVis" />
         </ResourceDictionary>
-
     </UserControl.Resources>
-    
-    <!--Window.Background>
-        <ImageBrush ImageSource="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\background.jpg"></ImageBrush>
-    </Window.Background-->
-    <Grid Height="800" VerticalAlignment="Center" Width="1320">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="31*" />
-                <ColumnDefinition Width="18*" />
-                <ColumnDefinition Width="33*"/>
-            </Grid.ColumnDefinitions>
-            <!--Border Grid.Row="0" Grid.Column="0" CornerRadius="10" Margin="10,0,10,266" Grid.RowSpan="2">
-                <Button  Name="btnAnimals" BorderBrush="White" BorderThickness="4" Content="Животни" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Width="200" Height="100" VerticalAlignment="Top" Margin="4,10,0,0" Grid.RowSpan="3" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,1">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Border>
-            <Button Name="btnEvents" BorderBrush="White" BorderThickness="4" Content="Събития" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="100" VerticalAlignment="Top" Margin="0,10,0,0" Command="{Binding SelectEventsCommand}">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button Name="btnTickets" BorderBrush="White" BorderThickness="4" Content="Билети" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Width="200" Height="100" VerticalAlignment="Top" Margin="0,10,0,0" Command="{Binding SelectTicketsCommand}">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-            </Button-->
+        <Grid Grid.Row="0"  
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+            <Label  Name="Search" 
+                    Content="Моля изберете категория:"  
+                    Foreground="#FF1EF700" 
+                    Height="45"     
+                    HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" 
+                    FontSize="24" />
         </Grid>
-        <Grid Margin="0,264,0,0" Grid.RowSpan="2">
+        <Grid Grid.Row="1"  
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0*"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Name="SearchBtn" Content="Търси" HorizontalAlignment="Left" Width="90" Height="30" VerticalAlignment="Top" Command="{Binding SearchAnimalsByCategoryCommand}" Margin="300,50,0,0" Grid.ColumnSpan="2"/>
-            <Label  Name="Search" Content="Моля изберете категория:"   Foreground="#FF1EF700" Height="45"     
-         HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" FontSize="24" Grid.ColumnSpan="2"/>
-            <ComboBox x:Name="ComboBox1"   Width="300" Height="30"  
-         HorizontalAlignment="Left" ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" VerticalAlignment="Top" Margin="0,50,0,0" Grid.ColumnSpan="2" />
-            <ListView x:Name="AnimalsView" ItemsSource="{Binding Animals}" SelectedItem="{Binding SelectedAnimal}"   HorizontalAlignment="Left" VerticalAlignment="Center"  Width="330" Height="110" Grid.ColumnSpan="2">
+            <ComboBox x:Name="ComboBox1" 
+                      Width="250" Height="30"                      
+                      HorizontalAlignment="Left" 
+                      VerticalAlignment="Center"
+                      ItemsSource="{Binding Categories}" 
+                      SelectedItem="{Binding SelectedCategory}"
+                      Grid.Column="0"/>
+            <Button Name="SearchBtn" 
+                    Content="Търси" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    Width="60" Height="30" 
+                    Margin="0,0,0,0" 
+                    Grid.Column="0"
+                    Command="{Binding SearchAnimalsByCategoryCommand}"/>
+        </Grid>
+        <Grid Grid.Row="2"  
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+            <ListView x:Name="AnimalsView" 
+                      ItemsSource="{Binding Animals}"
+                      SelectedItem="{Binding SelectedAnimal}"  
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Bottom"  
+                      Width="350" Height="100" 
+                      Grid.Column="0">
                 <ListView.View>
-
                     <GridView>
-
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Категория" Width="320"  />
-
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}"
+                                        Header="Категория" 
+                                        Width="340"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-
-            <TextBlock  Background="White" Text="{Binding SelectedAnimal.Description}" TextWrapping="Wrap" 
-                        Visibility="{Binding IsTextBoxVisible,Converter={StaticResource boolToVis}}" 
-                        VerticalAlignment="Center" HorizontalAlignment="Left" Width="364" Height="184" Margin="956,0,0,0" 
-                        Grid.ColumnSpan="2"/>
-            <!--Border BorderBrush="Red" >
-            <Border.Background>
-                <ImageBrush ImageSource="{Binding SelectedAnimal.Image}"
-            </Border.Background>
-        </Border-->
-            <Image Source="{Binding SelectedAnimal.Image}" Grid.Column="1" RenderTransformOrigin="0.5,0.5" Width="600" Height="300" VerticalAlignment="Stretch" Margin="360,0,360,0" HorizontalAlignment="Stretch">
+        </Grid>
+        <Grid Grid.Row="3"  
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Background="White" 
+                       Text="{Binding SelectedAnimal.Description}"
+                       TextWrapping="Wrap" 
+                       Visibility="{Binding IsTextBoxVisible,Converter={StaticResource boolToVis}}" 
+                       VerticalAlignment="Stretch" 
+                       HorizontalAlignment="Left" 
+                       Width="364" 
+                       Height="184" 
+                       Grid.Column="1"/>
+            <Image Source="{Binding SelectedAnimal.Image}"                    
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Stretch"                   
+                   Grid.Column="0">
                 <Image.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
-
+                        <Setter Property="CornerRadius"
+                                Value="20"/>
                     </Style>
                 </Image.Resources>
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="-0.144"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="-0.747"/>
-                    </TransformGroup>
-                </Image.RenderTransform>
             </Image>
         </Grid>
     </Grid>
-
 </UserControl>
