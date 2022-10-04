@@ -1,5 +1,4 @@
-﻿using Prism.Commands;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +8,8 @@ using Zoo.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Zoo.Views;
 using System.Windows;
+using System.Windows.Input;
+using Zoo.Commands;
 
 namespace Zoo.ViewModels
     {
@@ -18,9 +19,6 @@ namespace Zoo.ViewModels
         #region Private Fields
         private List<Ticket> tickets;                    
         private TicketDbContext ticketDbContext = new TicketDbContext();
-        private DelegateCommand selectAnimalsCommand;
-        private DelegateCommand selectEventsCommand;
-        private DelegateCommand selectTicketsCommand;
         #endregion
 
         #region Constructor
@@ -28,6 +26,7 @@ namespace Zoo.ViewModels
             {
                 tickets = new List<Ticket>();              
                 FillTickets();
+                BuyTicketCommand = new BuyTicketCommand();
             }
         #endregion
 
@@ -56,7 +55,7 @@ namespace Zoo.ViewModels
 
         #region Commands
         
-       
+        public ICommand BuyTicketCommand { get; set; }
                 
             
         #endregion

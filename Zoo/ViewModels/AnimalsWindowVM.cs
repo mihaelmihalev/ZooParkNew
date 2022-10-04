@@ -137,7 +137,7 @@ namespace Zoo.ViewModels
         }
           
         #endregion
-
+        
         #region Methods
 
         private void FillAnimals()

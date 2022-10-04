@@ -38,11 +38,14 @@
                   Width="330"
                   Height="208"
                   Grid.Row="2">
-            <ListView.View>
+            <ListView.View >
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Type}" 
                                     Header="Тип" 
-                                    Width="320"/>
+                                    Width="160"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Price}" 
+                                    Header="Цена" 
+                                    Width="160"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -54,6 +57,7 @@
                 Height="50"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
+                Command="{Binding BuyTicketCommand}"
                  >
             <Button.Resources>
                 <Style TargetType="Border">

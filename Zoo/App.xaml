@@ -5,15 +5,4 @@
              xmlns:views="clr-namespace:Zoo.Views"
              xmlns:viewmodels="clr-namespace:Zoo.ViewModels"             
              StartupUri="Views/LoginWindow.xaml">
-    <!--Application.Resources>
-        <DataTemplate DataType="{x:Type viewmodels:AnimalsWindowVM}">
-            <views:AnimalsWindow/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:EventsWindowVM}">
-            <views:EventsWindow/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:TicketsWindowVM}">
-            <views:TicketsWindow/>
-        </DataTemplate>
-    </Application.Resources-->
 </Application>

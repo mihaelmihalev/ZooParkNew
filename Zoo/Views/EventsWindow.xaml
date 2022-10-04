@@ -18,8 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -43,7 +42,7 @@
                 FontSize="24" 
                 Grid.Row="0"/>
         <ComboBox x:Name="ComboBox1"  
-                  Width="300"
+                  Width="280"
                   Height="30"  
                   HorizontalAlignment="Left" 
                   VerticalAlignment="Center" 
@@ -55,7 +54,7 @@
                   SelectedItem="{Binding SelectedEvent}"  
                   HorizontalAlignment="Left"
                   VerticalAlignment="Center" 
-                  Width="330" Height="110" 
+                  Width="330" Height="130" 
                   Grid.Row="2">
             <ListView.View>
                 <GridView>

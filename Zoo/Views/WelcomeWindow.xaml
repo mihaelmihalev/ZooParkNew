@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:Zoo.Views"
         xmlns:viewmodels="clr-namespace:Zoo.ViewModels"       
         mc:Ignorable="d"
-        Title="Избор" WindowStartupLocation="CenterScreen">
+        Title="Избор" WindowStartupLocation="CenterScreen" MinHeight="900" MinWidth="1400">
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodels:AnimalsWindowVM}">
@@ -42,13 +42,27 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Name="btnEvents" Background="Transparent" BorderBrush="GreenYellow" BorderThickness="4" Content="Събития" Foreground="Yellow" FontSize="30"  Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="100" VerticalAlignment="Top" Margin="0,10,0,0" Command="{Binding UpdateViewCommand}" CommandParameter="Events" Grid.RowSpan="3">
+            <Button Name="btnEvents" 
+                    Background="Transparent"
+                    BorderBrush="Transparent" 
+                    Foreground="Yellow" 
+                    FontSize="30"  
+                    Grid.Column="1" 
+                    HorizontalAlignment="Center"  
+                    Width="200"
+                    Height="100" 
+                    VerticalAlignment="Top"
+                    Margin="0,10,0,0" 
+                    Command="{Binding UpdateViewCommand}"
+                    CommandParameter="Events">
+                <Image Width="250" Height="120"  Source="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\events.png"></Image>
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
+            
             <Button Name="btnTickets"  Background="Transparent" Foreground="Yellow" FontSize="30" BorderBrush="Red" BorderThickness="4" Content="Билети" Grid.Column="2" HorizontalAlignment="Right" Width="200" Height="100" VerticalAlignment="Top" Margin="0,10,3,0" Command="{Binding UpdateViewCommand}" CommandParameter="Tickets" Grid.RowSpan="3">
                 <Button.Resources>
                     <Style TargetType="Border">

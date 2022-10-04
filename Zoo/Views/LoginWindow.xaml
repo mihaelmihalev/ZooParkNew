@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zoo"
         mc:Ignorable="d"
-        Title="Вход в системата" WindowStartupLocation="CenterScreen">
+        Title="Вход в системата" WindowStartupLocation="CenterScreen" MinHeight="900" MinWidth="1400">
     <Window.Background>
         <ImageBrush ImageSource="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\login.jpg"></ImageBrush>
     </Window.Background>
@@ -14,7 +14,7 @@
                   BorderThickness="2" 
                   BorderBrush="Red" 
                   Height="200" Width="600" 
-                  HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
                   Margin="30,0,0,30">
             <Grid >
                 <Grid.RowDefinitions>
@@ -25,30 +25,44 @@
                 <Grid Grid.Row="0" >
                     <Label Content="Потребителско име:"
                            HorizontalAlignment="Left" VerticalAlignment="Center" 
-                           Width="300" Height="40" />
+                           Width="300" Height="40"
+                           FontSize="24"/>
                     <TextBox x:Name="username"
                              HorizontalAlignment="Right" VerticalAlignment="Center" 
                              Width="300" Height="40"  
-                             Text="{Binding Username}"/>
+                             Text="{Binding Username}"
+                             FontSize="24"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Label Content="Парола: " 
                            HorizontalAlignment="Left" VerticalAlignment="Center"
-                           Width="300" Height="40"/>
+                           Width="300" Height="40"
+                           FontSize="24"/>
                     <TextBox x:Name="password" 
                              HorizontalAlignment="Right"
                              VerticalAlignment="Center" 
                              Width="300" Height="40"
+                             FontSize="24"
                              Text="{Binding Password}"/>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Button  x:Name="loginBtn" 
                              Content="Вход" 
-                             HorizontalAlignment="Right" VerticalAlignment="Center" 
-                             Width="100" Height="40" 
-                             Command="{Binding LoginCommand}" />
+                             Width="200" Height="40"
+                             FontSize="24"
+                             Background="Transparent"
+                             BorderBrush="GreenYellow"
+                             BorderThickness="3"
+                             Command="{Binding LoginCommand}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </Grid>
             </Grid>
+            
         </GroupBox>
     </Grid>
 </Window>
