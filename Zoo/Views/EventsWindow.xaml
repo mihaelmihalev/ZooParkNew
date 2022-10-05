@@ -14,57 +14,50 @@
             <BooleanToVisibilityConverter x:Key="boolToVis" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Button Name="SearchBtn" 
+    <GroupBox  Grid.Row="1" Header="Моля изберете дата и събитие" FontSize="24" Foreground="White" Width="Auto" Height="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="SearchBtn" 
                 Content="Търси"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 Width="90"
-                Height="30" 
+                Height="40" 
                 Grid.Row="1" 
                 Command="{Binding SearchEventsByTypeCommand}"/>
-        <Label  Name="Search" 
-                Content="Моля изберете събитие:"  
-                Foreground="#FF1EF700" 
-                Height="45"  Width="300"    
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                FontSize="24" 
-                Grid.Row="0"/>
-        <ComboBox x:Name="ComboBox1"  
+            <ComboBox x:Name="ComboBox1"  
                   Width="280"
-                  Height="30"  
+                  Height="40"  
                   HorizontalAlignment="Left" 
                   VerticalAlignment="Center" 
                   ItemsSource="{Binding Types}"
                   SelectedItem="{Binding SelectedType}"  
                   Grid.Row="1"/>
-        <ListView x:Name="EventsView" 
+            <ListView x:Name="EventsView" 
                   ItemsSource="{Binding Events}" 
                   SelectedItem="{Binding SelectedEvent}"  
                   HorizontalAlignment="Left"
                   VerticalAlignment="Center" 
                   Width="330" Height="130" 
                   Grid.Row="2">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Type}"
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Type}"
                                     Header="Категория"
                                     Width="320"  />
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <TextBlock  Background="White" 
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <TextBox  Background="White" 
                     Text="{Binding SelectedEvent.Description}" 
                     TextWrapping="Wrap" 
                     Visibility="{Binding IsTextBoxVisible,Converter={StaticResource boolToVis}}" 
@@ -73,13 +66,16 @@
                     Width="364" 
                     Height="184" 
                     Grid.Row="2" 
-                    Grid.Column="1"/>
-        <DatePicker BorderBrush="Transparent" 
+                    Grid.Column="1"
+                    IsEnabled="False"/>
+            <DatePicker                    
+                    BorderBrush="Transparent" 
                     Height="80" 
                     Width="250"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center" 
-                    Grid.Row="1"/>
-        
-    </Grid>
+                    Grid.Row="0"/>
+
+        </Grid>
+    </GroupBox>
 </UserControl>

@@ -5,16 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zoo"
         mc:Ignorable="d"
-        Title="Вход в системата" WindowStartupLocation="CenterScreen" MinHeight="900" MinWidth="1400">
+        Title="Вход в системата" 
+        WindowStartupLocation="CenterScreen"
+        Height="300"
+        Width="700"
+        MinHeight="300"
+        MinWidth="700">
     <Window.Background>
-        <ImageBrush ImageSource="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\login.jpg"></ImageBrush>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+            <GradientStop Color="Blue" Offset="0.8" />
+            <GradientStop Color="Red" Offset="0.2" />
+            <GradientStop Color="Yellow" Offset="0.5" />
+        </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <GroupBox Background="White"  
-                  BorderThickness="2" 
-                  BorderBrush="Red" 
+        <GroupBox Header="Моля въведете потребителско име и парола"
+                  FontSize="24"
+                  Foreground="White"
+                  Background="Transparent"  
+                  BorderThickness="1" 
+                  BorderBrush="White" 
                   Height="200" Width="600" 
-                  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                  HorizontalAlignment="Center" VerticalAlignment="Center" 
                   Margin="30,0,0,30">
             <Grid >
                 <Grid.RowDefinitions>

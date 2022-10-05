@@ -15,92 +15,85 @@
             <BooleanToVisibilityConverter x:Key="boolToVis" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="3*"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0"  
+    <GroupBox  Grid.Row="1" 
+               Header="Моля изберете категория" 
+               FontSize="24" 
+               Foreground="White"
+               Width="Auto" 
+               Height="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"  
               HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch">
-            <Label  Name="Search" 
-                    Content="Моля изберете категория:"  
-                    Foreground="#FF1EF700" 
-                    Height="45"     
-                    HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" 
-                    FontSize="24" />
-        </Grid>
-        <Grid Grid.Row="1"  
-              HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <ComboBox x:Name="ComboBox1" 
-                      Width="250" Height="30"                      
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox x:Name="ComboBox1" 
+                      Width="250" Height="40"                      
                       HorizontalAlignment="Left" 
-                      VerticalAlignment="Center"
+                      VerticalAlignment="Stretch"
                       ItemsSource="{Binding Categories}" 
                       SelectedItem="{Binding SelectedCategory}"
                       Grid.Column="0"/>
-            <Button Name="SearchBtn" 
+                <Button Name="SearchBtn" 
                     Content="Търси" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center"
-                    Width="60" Height="30" 
+                    Width="80" Height="40" 
                     Margin="0,0,0,0" 
                     Grid.Column="0"
                     Command="{Binding SearchAnimalsByCategoryCommand}"/>
-        </Grid>
-        <Grid Grid.Row="2"  
+            </Grid>
+            <Grid Grid.Row="1"  
               HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch">
-            <ListView x:Name="AnimalsView" 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                <ListView x:Name="AnimalsView" 
                       ItemsSource="{Binding Animals}"
                       SelectedItem="{Binding SelectedAnimal}"  
                       HorizontalAlignment="Left"
-                      VerticalAlignment="Bottom"  
-                      Width="350" Height="100" 
+                      VerticalAlignment="Stretch"  
+                      Width="350" Height="300" 
                       Grid.Column="0">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}"
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}"
                                         Header="Категория" 
                                         Width="340"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
-        <Grid Grid.Row="3"  
-              HorizontalAlignment="Stretch" 
-              VerticalAlignment="Stretch">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Background="White" 
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <TextBox Background="White" 
                        Text="{Binding SelectedAnimal.Description}"
                        TextWrapping="Wrap" 
                        Visibility="{Binding IsTextBoxVisible,Converter={StaticResource boolToVis}}" 
                        VerticalAlignment="Stretch" 
                        HorizontalAlignment="Left" 
-                       Width="364" 
-                       Height="184" 
-                       Grid.Column="1"/>
-            <Image Source="{Binding SelectedAnimal.Image}"                    
+                       Width="400" 
+                       Height="200" 
+                       Grid.Column="2"
+                       IsEnabled="False"/>
+                <Image Source="{Binding SelectedAnimal.Image}"                    
                    HorizontalAlignment="Right"
                    VerticalAlignment="Stretch"                   
-                   Grid.Column="0">
-                <Image.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius"
+                   Grid.Column="1">
+                    <Image.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius"
                                 Value="20"/>
-                    </Style>
-                </Image.Resources>
-            </Image>
+                        </Style>
+                    </Image.Resources>
+                </Image>
+            </Grid>
         </Grid>
-    </Grid>
+    </GroupBox>
 </UserControl>
