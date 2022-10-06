@@ -26,10 +26,9 @@ namespace Zoo.ViewModels
         private Animal selectedCategory;
         //private CategoryDbContext categoryDbContext = new CategoryDbContext();
         private AnimalDbContext animalDbContext = new AnimalDbContext();
-        private DelegateCommand selectEventsCommand;
-        private DelegateCommand selectTicketsCommand;
         private DelegateCommand searchAnimalsByCategoryCommand;
         private bool isTextBoxVisible;
+        private bool isListViewVisible;
 
 
         #endregion
@@ -39,6 +38,7 @@ namespace Zoo.ViewModels
         public AnimalsWindowVM()
         {     
             isTextBoxVisible = false;
+            isListViewVisible = false;
             FillCategories();
             // FillAnimalData();
 
@@ -47,6 +47,16 @@ namespace Zoo.ViewModels
 
         #region Properties
 
+        public bool IsListViewVisible
+        {
+            get { return isListViewVisible; }
+            set
+            {
+
+                isListViewVisible = value;
+                OnPropertyChanged("IsListViewVisible");
+            }
+        }
         public bool IsTextBoxVisible
         {
             get { return isTextBoxVisible; }
@@ -85,7 +95,7 @@ namespace Zoo.ViewModels
             get { return selectedCategory; }
             set
             {
-                selectedCategory = value;
+                selectedCategory = value;                
                 OnPropertyChanged("SelectedCategory");
             }
         }
@@ -124,6 +134,8 @@ namespace Zoo.ViewModels
             {
                 return searchAnimalsByCategoryCommand ?? (searchAnimalsByCategoryCommand = new DelegateCommand(() =>
                 {
+                    IsListViewVisible = true;
+                    IsTextBoxVisible = false;
                     if (SelectedCategory != null)
                     {
                         GetAnimalByCategory();
@@ -159,7 +171,7 @@ namespace Zoo.ViewModels
 
         private void ChangeTextBoxVisibality()
         {
-            if(SelectedAnimal != null)
+            if (SelectedAnimal != null )
             {
                 IsTextBoxVisible = true;
             }

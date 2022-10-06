@@ -40,6 +40,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Background="Transparent"
+                    Style="{StaticResource WelcomeButtons}"
                     Name="btnAnimals" 
                     BorderBrush="Transparent"
                     BorderThickness="4"  
@@ -53,14 +54,23 @@
                     Margin="4,10,0,0" 
                     Command="{Binding UpdateViewCommand}"
                     CommandParameter="Animals">
-                <Image Width="300" Height="300"  Source="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\animals.png"></Image>
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
+                <Image HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch" 
+                       Source="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\animals.png">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Style.Triggers>
+                                <EventTrigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Width" Value="400"/>
+                                    <Setter Property="Height" Value="400"/>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
             </Button>
-            <Button Name="btnEvents" 
+            <Button Name="btnEvents"
+                    Style="{StaticResource WelcomeButtons}"
                     Background="Transparent"
                     BorderBrush="Transparent" 
                     Foreground="Yellow" 
@@ -82,7 +92,7 @@
             </Button>
 
             <Button Name="btnTickets"  
-                    
+                    Style="{StaticResource WelcomeButtons}"
                     Opacity="1"
                     Background="Transparent"                   
                     FontSize="30" 

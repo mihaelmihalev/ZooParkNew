@@ -24,7 +24,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"  
               HorizontalAlignment="Stretch"
@@ -47,7 +47,8 @@
                     Width="80" Height="40" 
                     Margin="0,0,0,0" 
                     Grid.Column="0"
-                    Command="{Binding SearchAnimalsByCategoryCommand}"/>
+                    Command="{Binding SearchAnimalsByCategoryCommand}"
+                    Style="{StaticResource ButtonStyle}"/>
             </Grid>
             <Grid Grid.Row="1"  
               HorizontalAlignment="Stretch"
@@ -55,20 +56,22 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <ListView x:Name="AnimalsView" 
+                      Visibility="{Binding IsListViewVisible,Converter={StaticResource boolToVis}}"
                       ItemsSource="{Binding Animals}"
                       SelectedItem="{Binding SelectedAnimal}"  
                       HorizontalAlignment="Left"
                       VerticalAlignment="Stretch"  
-                      Width="350" Height="300" 
-                      Grid.Column="0">
+                      Width="400" Height="300" 
+                      Grid.Column="0"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Name}"
-                                        Header="Категория" 
-                                        Width="340"/>
+                                            Header="Животно" 
+                                            Width="400"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -79,19 +82,16 @@
                        VerticalAlignment="Stretch" 
                        HorizontalAlignment="Left" 
                        Width="400" 
-                       Height="200" 
+                       Height="235"
                        Grid.Column="2"
-                       IsEnabled="False"/>
+                       IsEnabled="False"
+                       Style="{StaticResource TextboxStyle}"/>
                 <Image Source="{Binding SelectedAnimal.Image}"                    
-                   HorizontalAlignment="Right"
+                   HorizontalAlignment="Left"
                    VerticalAlignment="Stretch"                   
-                   Grid.Column="1">
-                    <Image.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius"
-                                Value="20"/>
-                        </Style>
-                    </Image.Resources>
+                   Grid.Column="1"
+                       Width="400"
+                       Height="300">
                 </Image>
             </Grid>
         </Grid>

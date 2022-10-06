@@ -5,4 +5,57 @@
              xmlns:views="clr-namespace:Zoo.Views"
              xmlns:viewmodels="clr-namespace:Zoo.ViewModels"             
              StartupUri="Views/LoginWindow.xaml">
+    <Application.Resources>
+      <Style TargetType="TextBox" x:Key="TextboxStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"                                
+                                CornerRadius="10"
+                                BorderBrush="GreenYellow"
+                                BorderThickness="3"
+                                Background="White">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                HorizontalScrollBarVisibility="Hidden"
+                                Focusable="false"
+                                VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border"                                
+                                CornerRadius="10"
+                                BorderBrush="GreenYellow"
+                                BorderThickness="3"
+                                Background="Transparent">
+                            <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="WelcomeButtons">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border"                                
+                                CornerRadius="10"
+                                Width="300"
+                                Height="200"
+                                BorderBrush="Transparent"
+                                BorderThickness="3"
+                                Background="Transparent">
+                            <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Application.Resources>
 </Application>

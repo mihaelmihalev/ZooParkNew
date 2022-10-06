@@ -55,13 +55,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Command="{Binding BuyTicketCommand}"
-                 >
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius"
-                            Value="10"/>
-                    </Style>
-                </Button.Resources>
+                 Style="{StaticResource ButtonStyle}">
             </Button>
         </Grid>
     </GroupBox>
