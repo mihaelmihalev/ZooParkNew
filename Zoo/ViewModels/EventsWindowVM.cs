@@ -21,10 +21,10 @@ namespace Zoo.ViewModels
         private Event selectedType;
         private Event selectedEvent;        
         private EventDbContext eventDbContext = new EventDbContext();
-        private DelegateCommand selectAnimalsCommand;        
-        private DelegateCommand selectTicketsCommand;
         private DelegateCommand searchEventsByTypeCommand;
         private bool isTextBoxVisible;
+        private bool isListViewVisible;
+        
         #endregion
 
         #region Constructor
@@ -32,6 +32,7 @@ namespace Zoo.ViewModels
         {         
         FillTypes();
         isTextBoxVisible = false;
+        isListViewVisible = false;
        
        
         }
@@ -45,6 +46,15 @@ namespace Zoo.ViewModels
             {
             isTextBoxVisible = value;
             OnPropertyChanged("IsTextBoxVisible");
+            }
+        }
+        public bool IsListViewVisible
+        {
+            get { return isListViewVisible; }
+            set
+            {
+                isListViewVisible = value;
+                OnPropertyChanged("IsListViewVisible");
             }
         }
         public List<Event> Events
@@ -106,10 +116,14 @@ namespace Zoo.ViewModels
         #region Commands
         public DelegateCommand SearchEventsByTypeCommand
         {
+            
             get
             {
+                
                 return searchEventsByTypeCommand ?? (searchEventsByTypeCommand = new DelegateCommand(() =>
                 {
+                    IsListViewVisible = true;
+                    IsTextBoxVisible = false;
                     if (SelectedType != null)
                     {
                         GetEventByType();
@@ -124,20 +138,7 @@ namespace Zoo.ViewModels
                 }));
             }
         }
-
-        public DelegateCommand SelectAnimalsCommand
-        {
-            get
-            {
-                return selectAnimalsCommand ?? (selectAnimalsCommand = new DelegateCommand(() =>
-                {
-                    
-                    //Window window = new AnimalsWindow();
-                    //window.Show();
-                    //System.Windows.Application.Current.Windows[0].Close();
-                }));
-            }
-        }
+       
          
         #endregion
 

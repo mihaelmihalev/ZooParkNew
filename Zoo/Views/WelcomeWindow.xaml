@@ -57,7 +57,7 @@
                 <Image HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch" 
                        Source="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\animals.png">
-                    <Image.Style>
+                    <!--Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Style.Triggers>
                                 <EventTrigger Property="IsMouseOver" Value="True">
@@ -66,7 +66,7 @@
                                 </EventTrigger>
                             </Style.Triggers>
                         </Style>
-                    </Image.Style>
+                    </Image.Style-->
                 </Image>
             </Button>
             <Button Name="btnEvents"

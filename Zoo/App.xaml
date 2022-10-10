@@ -31,7 +31,7 @@
                         <Border x:Name="border"                                
                                 CornerRadius="10"
                                 BorderBrush="GreenYellow"
-                                BorderThickness="3"
+                                BorderThickness="3"                                
                                 Background="Transparent">
                             <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
                         </Border>

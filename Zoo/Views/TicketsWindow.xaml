@@ -9,7 +9,7 @@
     <UserControl.DataContext>
         <viewmodels:TicketsWindowVM/>
     </UserControl.DataContext>
-    <GroupBox  Grid.Row="1" 
+    <GroupBox  
                Header="Моля изберете категория" 
                FontSize="24" 
                Foreground="White"
@@ -18,45 +18,190 @@
         <Grid Width="Auto" Height="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="2.5*" />
+                <RowDefinition Height="2*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <DatePicker BorderBrush="Transparent" 
-                    Height="120"  Width="180"
+            <Grid Grid.Row="0">
+                <DatePicker BorderBrush="Transparent" 
+                    Height="40"  Width="180"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top" 
-                    Grid.Row="1"
+                    VerticalAlignment="Center"                     
                     />
-            <ListView x:Name="TicketsView"                  
+            </Grid>
+            <Grid Grid.Row="1" Width="Auto" Height="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <ListView x:Name="TicketsView"                  
                   ItemsSource="{Binding Tickets}" 
                   HorizontalAlignment="Left"  
                   VerticalAlignment="Top"
                   Width="330"
-                  Height="230"
-                  Grid.Row="2">
-                <ListView.View >
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Type}" 
+                  Height="400"
+                  Grid.Column="0"
+                  >
+                    <ListView.View >
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Type}" 
                                     Header="Тип" 
                                     Width="160"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Price}" 
+                            <GridViewColumn DisplayMemberBinding="{Binding Price}" 
                                     Header="Цена" 
                                     Width="160"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Button Name="BuyBtn"
-                Content="Купи" 
-                BorderBrush="White" 
-                Grid.Row="3" 
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <TextBox Text="Количество:"                           
+                           Foreground="Black"
+                           Grid.Column="1"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                         IsReadOnly="True"
+                         Style="{StaticResource TextboxStyle}"/>
+                <TextBox x:Name="Family"
+                         Text="{Binding FamilyCount}"
+                         Grid.Column="1"
+                         Width="60"
+                         Height="30"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Margin="0,0,0,50"                       
+                         />
+                <TextBox x:Name="School"
+                         Text="{Binding SchoolCount}"
+                         Grid.Column="1"
+                         Width="60"
+                         Height="30"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Margin="0,20,0,0"/>
+                <TextBox x:Name="Classic"
+                         Text="{Binding ClassicCount}"
+                         Grid.Column="1"
+                         Width="60"
+                         Height="30"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Margin="0,90,0,0"/>
+                <Button  
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        Grid.Column="1" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Height="30"
+                        Width="30"
+                        Margin="70,0,0,50"
+                        Command="{Binding AddFamilyTicket}">
+                    <Image Source="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\PlusButton.png"/>
+                </Button>
+                <Button  
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        Grid.Column="1" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Height="30"
+                        Width="30"
+                        Margin="100,0,0,50"
+                        Command="{Binding RemoveFamilyTicket}">
+                    <Image Source="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\MinusButton.png"/>
+                </Button>
+                <Button  
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        Grid.Column="1" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Height="30"
+                        Width="30"
+                        Margin="70,20,0,00"
+                        Command="{Binding AddSchoolTicket}">
+                    <Image Source="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\PlusButton.png"/>
+                </Button>
+                <Button  
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        Grid.Column="1" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Height="30"
+                        Width="30"
+                        Margin="100,20,0,0"
+                        Command="{Binding RemoveSchoolTicket}">
+                    <Image Source="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\MinusButton.png"/>
+                </Button>
+                <Button  
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        Grid.Column="1" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Height="30"
+                        Width="30"
+                        Margin="70,90,0,0"
+                        Command="{Binding AddClassicTicket}">
+                    <Image Source="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\PlusButton.png"/>
+                </Button>
+                <Button  
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        Grid.Column="1" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Height="30"
+                        Width="30"
+                        Margin="100,90,0,0"
+                        Command="{Binding RemoveClassicTicket}">
+                    <Image Source="C:\Users\mihael.mihalev\Desktop\Izpitvane\Zoo\Zoo\Images\MinusButton.png"/>
+                </Button>
+            </Grid>
+            
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Name="BuyBtn"
+                Content="Купи"                                 
                 Width="100"
                 Height="50"
+                Grid.Column="1"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Command="{Binding BuyTicketCommand}"
-                 Style="{StaticResource ButtonStyle}">
-            </Button>
+                 Style="{StaticResource ButtonStyle}"
+                 
+                   >
+                </Button>
+                <Label Name="PriceCounter" 
+                       Grid.Column="0" 
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Content="Общо:"
+                       Width="100"
+                       Height="50"
+                       
+                       >
+                </Label>
+                <TextBox
+                    Text="{Binding FinalPrice}"
+                    Grid.Column="0"
+                    Width="100"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Height="50"  
+                    Style="{StaticResource TextboxStyle}"
+                    TextAlignment="Center"
+                    IsReadOnly="True"
+                    
+                    />
+                
+
+
+            </Grid>
         </Grid>
     </GroupBox>
 </UserControl>

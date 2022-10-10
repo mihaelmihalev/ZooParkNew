@@ -44,6 +44,7 @@
                   SelectedItem="{Binding SelectedType}"  
                   Grid.Row="1"/>
             <ListView x:Name="EventsView" 
+                  Visibility="{Binding IsListViewVisible,Converter={StaticResource boolToVis}}"
                   ItemsSource="{Binding Events}" 
                   SelectedItem="{Binding SelectedEvent}"  
                   HorizontalAlignment="Left"
@@ -65,7 +66,7 @@
                     VerticalAlignment="Stretch"
                     HorizontalAlignment="Left" 
                     Width="364" 
-                    Height="184" 
+                    Height="160" 
                     Grid.Row="2" 
                     Grid.Column="1"
                     IsEnabled="False"
