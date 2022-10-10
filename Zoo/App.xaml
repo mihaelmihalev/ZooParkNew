@@ -35,7 +35,13 @@
                                 Background="Transparent">
                             <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
+                    
                 </Setter.Value>
             </Setter>
         </Style>
