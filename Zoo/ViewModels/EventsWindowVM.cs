@@ -1,5 +1,4 @@
-﻿using Prism.Commands;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +8,7 @@ using Zoo.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Zoo.Views;
 using System.Windows;
+using Zoo.Commands;
 
 namespace Zoo.ViewModels
 {
@@ -120,21 +120,9 @@ namespace Zoo.ViewModels
             get
             {
                 
-                return searchEventsByTypeCommand ?? (searchEventsByTypeCommand = new DelegateCommand(() =>
+                return searchEventsByTypeCommand ?? (searchEventsByTypeCommand = new DelegateCommand((о) =>
                 {
-                    IsListViewVisible = true;
-                    IsTextBoxVisible = false;
-                    if (SelectedType != null)
-                    {
-                        GetEventByType();
-
-
-                    }
-                    else
-                    {
-
-                        FillEvents();
-                    }
+                    GetsAndFillsEvents();
                 }));
             }
         }
@@ -144,6 +132,22 @@ namespace Zoo.ViewModels
 
         #region Methods
 
+        private void GetsAndFillsEvents()
+        {
+            IsListViewVisible = true;
+            IsTextBoxVisible = false;
+            if (SelectedType != null)
+            {
+                GetEventByType();
+
+
+            }
+            else
+            {
+
+                FillEvents();
+            }
+        }
         private void FillEvents()
         {
             Events = eventDbContext.Events.ToList();

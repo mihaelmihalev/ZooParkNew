@@ -40,10 +40,11 @@
                   Width="330"
                   Height="400"
                   Grid.Column="0"
+                  Style="{StaticResource ListViews}"      
                   >
                     <ListView.View >
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Type}" 
+                        <GridView >
+                            <GridViewColumn DisplayMemberBinding="{Binding Type}"                                                                                     
                                     Header="Тип" 
                                     Width="160"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Price}" 

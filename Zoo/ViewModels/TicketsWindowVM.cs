@@ -10,7 +10,7 @@ using Zoo.Views;
 using System.Windows;
 using System.Windows.Input;
 using Zoo.Commands;
-using Prism.Commands;
+
 
 namespace Zoo.ViewModels
 {
@@ -24,12 +24,14 @@ namespace Zoo.ViewModels
         private int finalPrice;
         private List<Ticket> tickets;
         private TicketDbContext ticketDbContext = new TicketDbContext();
-        private ICommand addFamilyTicket;
-        private ICommand removeFamilyTicket;
-        private ICommand addSchoolTicket;
-        private ICommand removeSchoolTicket;
-        private ICommand addClassicTicket;
-        private ICommand removeClassicTicket;
+        private DelegateCommand addFamilyTicket;
+        private DelegateCommand removeFamilyTicket;
+        private DelegateCommand addSchoolTicket;
+        private DelegateCommand removeSchoolTicket;
+        private DelegateCommand addClassicTicket;
+        private DelegateCommand removeClassicTicket;
+        private DelegateCommand buyTicketCommand;
+
         #endregion
 
         #region Constructor
@@ -37,10 +39,6 @@ namespace Zoo.ViewModels
         {
             tickets = new List<Ticket>();
             FillTickets();
-            BuyTicketCommand = new BuyTicketCommand();
-
-
-
 
 
         }
@@ -101,12 +99,9 @@ namespace Zoo.ViewModels
             {
                 tickets = value;
                 OnPropertyChanged("Tickets");
-
-
             }
         }
         #endregion
-
         #region Methods
         private void FillTickets()
         {
@@ -115,110 +110,96 @@ namespace Zoo.ViewModels
         private void CalculateTicketsPrice()
         {
             FinalPrice = FamilyCount * 7 + SchoolCount * 5 + ClassicCount * 10;
-
         }
-
-
         #endregion
 
         #region Commands
-
-        public ICommand BuyTicketCommand { get; set; }
-        public ICommand AddFamilyTicket
+        public DelegateCommand AddFamilyTicket
         {
             get
             {
-                return addFamilyTicket ?? (addFamilyTicket = new DelegateCommand(() =>
+                return addFamilyTicket ?? (addFamilyTicket = new DelegateCommand((o) =>
                 {
                     FamilyCount++;
-
-
-
                 }));
             }
-
         }
-
-        public ICommand RemoveFamilyTicket
+        public DelegateCommand RemoveFamilyTicket
         {
             get
             {
-                return removeFamilyTicket ?? (removeFamilyTicket = new DelegateCommand(() =>
+                return removeFamilyTicket ?? (removeFamilyTicket = new DelegateCommand((o) =>
                 {
-                    FamilyCount--;
-
-
-
+                    if (FamilyCount > 0)
+                    {
+                        FamilyCount--;
+                    }
                 }));
             }
-
         }
-        public ICommand AddSchoolTicket
+        public DelegateCommand AddSchoolTicket
         {
             get
             {
-                return addSchoolTicket ?? (addSchoolTicket = new DelegateCommand(() =>
+                return addSchoolTicket ?? (addSchoolTicket = new DelegateCommand((o) =>
                 {
                     SchoolCount++;
-
-
-
                 }));
             }
-
         }
-
-        public ICommand RemoveSchoolTicket
+        public DelegateCommand RemoveSchoolTicket
         {
             get
             {
-                return removeSchoolTicket ?? (removeSchoolTicket = new DelegateCommand(() =>
+                return removeSchoolTicket ?? (removeSchoolTicket = new DelegateCommand((o) =>
                 {
-                    SchoolCount--;
-
-
-
+                    if (SchoolCount > 0)
+                    {
+                        SchoolCount--;
+                    }
                 }));
             }
-
         }
 
-        public ICommand AddClassicTicket
+        public DelegateCommand AddClassicTicket
         {
             get
             {
-                return addClassicTicket ?? (addClassicTicket = new DelegateCommand(() =>
+                return addClassicTicket ?? (addClassicTicket = new DelegateCommand((o) =>
                 {
                     ClassicCount++;
-
-
-
                 }));
             }
-
         }
 
-        public ICommand RemoveClassicTicket
+        public DelegateCommand RemoveClassicTicket
         {
             get
             {
-                return removeClassicTicket ?? (removeClassicTicket = new DelegateCommand(() =>
+                return removeClassicTicket ?? (removeClassicTicket = new DelegateCommand((o) =>
                 {
-                    ClassicCount--;
-
-
-
+                    if (ClassicCount > 0)
+                    {
+                        ClassicCount--;
+                    }
                 }));
             }
-
         }
-    
+
+        public DelegateCommand BuyTicketCommand
+        {
+            get
+            {
+                return buyTicketCommand ?? (buyTicketCommand = new DelegateCommand((o) =>
+                {
+                    MessageBox.Show("Успешно закупихте билет/и");
+                }));
+            }
+        }
     }
 }
 
-                
-            
-        #endregion
+#endregion
     
 
 

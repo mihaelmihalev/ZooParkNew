@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.Data.SqlClient;
-using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,12 +35,11 @@ namespace Zoo.ViewModels
         #region Constructor
 
         public AnimalsWindowVM()
-        {     
+        {
             isTextBoxVisible = false;
             isListViewVisible = false;
-            FillCategories();
+            FillCategories();             
             // FillAnimalData();
-
         }
         #endregion
 
@@ -132,18 +130,9 @@ namespace Zoo.ViewModels
         {
             get
             {
-                return searchAnimalsByCategoryCommand ?? (searchAnimalsByCategoryCommand = new DelegateCommand(() =>
+                return searchAnimalsByCategoryCommand ?? (searchAnimalsByCategoryCommand = new DelegateCommand((o) =>
                 {
-                    IsListViewVisible = true;
-                    IsTextBoxVisible = false;
-                    if (SelectedCategory != null)
-                    {
-                        GetAnimalByCategory();
-                    }
-                    else
-                    {
-                        FillAnimals();
-                    }
+                    GetAndFillAnimals();
                 }));
             }
         }
@@ -151,7 +140,19 @@ namespace Zoo.ViewModels
         #endregion
         
         #region Methods
-
+        private void GetAndFillAnimals()
+        {
+            IsListViewVisible = true;
+            IsTextBoxVisible = false;
+            if (SelectedCategory != null)
+            {
+                GetAnimalByCategory();
+            }
+            else
+            {
+                FillAnimals();
+            }
+        }
         private void FillAnimals()
         {
             Animals = animalDbContext.Animals.ToList();

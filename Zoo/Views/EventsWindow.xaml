@@ -49,12 +49,13 @@
                   SelectedItem="{Binding SelectedEvent}"  
                   HorizontalAlignment="Left"
                   VerticalAlignment="Center" 
-                  Width="330" Height="130" 
-                  Grid.Row="2">
+                  Width="340" Height="170" 
+                  Grid.Row="2"
+                  Style="{StaticResource ListViews}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Type}"
-                                    Header="Категория"
+                                    Header="Събитие"
                                     Width="320"  />
                     </GridView>
                 </ListView.View>

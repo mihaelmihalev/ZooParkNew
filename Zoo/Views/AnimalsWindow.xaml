@@ -66,7 +66,8 @@
                       VerticalAlignment="Stretch"  
                       Width="400" Height="300" 
                       Grid.Column="0"
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      Style="{StaticResource ListViews}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Name}"
