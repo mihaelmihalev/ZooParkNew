@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zoo.Views"
         xmlns:viewmodels="clr-namespace:Zoo.ViewModels"
-        mc:Ignorable="d"
-        Background="Transparent">
+        mc:Ignorable="d">
     <UserControl.DataContext>
         <viewmodels:AnimalsWindowVM/>
     </UserControl.DataContext>
@@ -16,43 +15,37 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <GroupBox  Grid.Row="1" 
-               Header="Моля изберете категория" 
+               Header="Моля изберете категория и животно" 
                FontSize="24" 
-               Foreground="White"
-               Width="Auto" 
-               Height="Auto">
+               Foreground="White">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0"  
-              HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch">
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox x:Name="ComboBox1" 
-                      Width="250" Height="40"                      
+                <ComboBox x:Name="AnimalCategoryCbx"    
+                      Width="250" 
+                      Height="40"                      
                       HorizontalAlignment="Left" 
                       VerticalAlignment="Stretch"
                       ItemsSource="{Binding Categories}" 
                       SelectedItem="{Binding SelectedCategory}"
                       Grid.Column="0"/>
-                <Button Name="SearchBtn" 
+                <Button Name="SearchAnimalBtn" 
                     Content="Търси" 
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Center"
-                    Width="80" Height="40" 
-                    Margin="0,0,0,0" 
+                    Width="130"
+                    Height="40" 
+                    Margin="40,0,0,0" 
                     Grid.Column="0"
                     Command="{Binding SearchAnimalsByCategoryCommand}"
                     Style="{StaticResource ButtonStyle}"/>
             </Grid>
-            <Grid Grid.Row="1"  
-              HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -62,9 +55,6 @@
                       Visibility="{Binding IsListViewVisible,Converter={StaticResource boolToVis}}"
                       ItemsSource="{Binding Animals}"
                       SelectedItem="{Binding SelectedAnimal}"  
-                      HorizontalAlignment="Left"
-                      VerticalAlignment="Stretch"  
-                      Width="400" Height="300" 
                       Grid.Column="0"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       Style="{StaticResource ListViews}">
@@ -76,8 +66,7 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <TextBox Background="White" 
-                       Text="{Binding SelectedAnimal.Description}"
+                <TextBox Text="{Binding SelectedAnimal.Description}"
                        TextWrapping="Wrap" 
                        Visibility="{Binding IsTextBoxVisible,Converter={StaticResource boolToVis}}" 
                        VerticalAlignment="Stretch" 

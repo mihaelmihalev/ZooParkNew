@@ -14,30 +14,33 @@
             <BooleanToVisibilityConverter x:Key="boolToVis" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <GroupBox  Grid.Row="1" Header="Моля изберете дата и събитие" FontSize="24" Foreground="White" Width="Auto" Height="Auto">
+    <GroupBox  Grid.Row="1" 
+               Header="Моля изберете дата и събитие"
+               FontSize="24" 
+               Foreground="White">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Name="SearchBtn" 
+            <Button Name="SearchEventsBtn" 
                 Content="Търси"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Width="90"
-                Height="40" 
-                Grid.Row="1" 
+                HorizontalAlignment="Center"
+                Width="130" 
+                Height="40"  
+                Margin="40,0,0,0"
+                Grid.Row="1"
+                Grid.Column="0"    
                 Command="{Binding SearchEventsByTypeCommand}"
                 Style="{StaticResource ButtonStyle}"/>
-            <ComboBox x:Name="ComboBox1"  
-                  Width="280"
-                  Height="40"  
+            <ComboBox x:Name="EventTypesCbx"  
+                  Width="250" 
+                  Height="40"
                   HorizontalAlignment="Left" 
                   VerticalAlignment="Center" 
                   ItemsSource="{Binding Types}"
@@ -46,40 +49,34 @@
             <ListView x:Name="EventsView" 
                   Visibility="{Binding IsListViewVisible,Converter={StaticResource boolToVis}}"
                   ItemsSource="{Binding Events}" 
-                  SelectedItem="{Binding SelectedEvent}"  
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Center" 
-                  Width="340" Height="170" 
+                  SelectedItem="{Binding SelectedEvent}"                    
                   Grid.Row="2"
                   Style="{StaticResource ListViews}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Type}"
                                     Header="Събитие"
-                                    Width="320"  />
+                                    Width="400"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <TextBox  Background="White" 
-                    Text="{Binding SelectedEvent.Description}" 
+            <TextBox Text="{Binding SelectedEvent.Description}" 
                     TextWrapping="Wrap" 
-                    Visibility="{Binding IsTextBoxVisible,Converter={StaticResource boolToVis}}" 
-                    VerticalAlignment="Stretch"
-                    HorizontalAlignment="Left" 
-                    Width="364" 
-                    Height="160" 
+                    Visibility="{Binding IsTextBoxVisible,Converter={StaticResource boolToVis}}"
+                    Width="400" 
+                    Height="200"
+                    HorizontalAlignment="Left"
                     Grid.Row="2" 
                     Grid.Column="1"
                     IsEnabled="False"
                     Style="{StaticResource TextboxStyle}"/>
             <DatePicker                    
                     BorderBrush="Transparent" 
-                    Height="80" 
+                    Height="60" 
                     Width="250"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center" 
                     Grid.Row="0"/>
-
         </Grid>
     </GroupBox>
 </UserControl>

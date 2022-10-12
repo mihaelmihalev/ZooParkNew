@@ -8,19 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\Welcome.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
     <PackageReference Include="Prism.Core" Version="8.1.97" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Images\Welcome.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
   <ItemGroup>

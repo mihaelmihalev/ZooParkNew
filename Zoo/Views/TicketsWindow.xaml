@@ -9,56 +9,47 @@
     <UserControl.DataContext>
         <viewmodels:TicketsWindowVM/>
     </UserControl.DataContext>
-    <GroupBox  
-               Header="Моля изберете категория" 
+    <GroupBox   Header="Моля изберете дата, тип и количество билети" 
                FontSize="24" 
-               Foreground="White"
-               Width="Auto" 
-               Height="Auto">
-        <Grid Width="Auto" Height="Auto">
+               Foreground="White">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="4*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <DatePicker BorderBrush="Transparent" 
                     Height="40"  Width="180"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"                     
-                    />
+                    VerticalAlignment="Center"/>
             </Grid>
-            <Grid Grid.Row="1" Width="Auto" Height="Auto">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <ListView x:Name="TicketsView"                  
-                  ItemsSource="{Binding Tickets}" 
-                  HorizontalAlignment="Left"  
-                  VerticalAlignment="Top"
-                  Width="330"
-                  Height="400"
+                  ItemsSource="{Binding Tickets}"
                   Grid.Column="0"
-                  Style="{StaticResource ListViews}"      
-                  >
-                    <ListView.View >
-                        <GridView >
+                  Style="{StaticResource ListViews}">
+                    <ListView.View>
+                        <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Type}"                                                                                     
                                     Header="Тип" 
-                                    Width="160"/>
+                                    Width="200"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Price}" 
                                     Header="Цена" 
-                                    Width="160"/>
+                                    Width="200"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
                 <TextBox Text="Количество:"                           
-                           Foreground="Black"
-                           Grid.Column="1"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top"
-                         IsReadOnly="True"
+                         Foreground="Black"
+                         Grid.Column="1"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         IsEnabled="False"
                          Style="{StaticResource TextboxStyle}"/>
                 <TextBox x:Name="Family"
                          Text="{Binding FamilyCount}"
@@ -67,8 +58,7 @@
                          Height="30"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Center"
-                         Margin="0,0,0,50"                       
-                         />
+                         Margin="0,0,0,50"/>
                 <TextBox x:Name="School"
                          Text="{Binding SchoolCount}"
                          Grid.Column="1"
@@ -183,9 +173,7 @@
                        VerticalAlignment="Center"
                        Content="Общо:"
                        Width="100"
-                       Height="50"
-                       
-                       >
+                       Height="50">
                 </Label>
                 <TextBox
                     Text="{Binding FinalPrice}"
@@ -196,12 +184,7 @@
                     Height="50"  
                     Style="{StaticResource TextboxStyle}"
                     TextAlignment="Center"
-                    IsReadOnly="True"
-                    
-                    />
-                
-
-
+                    IsEnabled="False"/>
             </Grid>
         </Grid>
     </GroupBox>

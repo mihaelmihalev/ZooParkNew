@@ -27,11 +27,16 @@ namespace Zoo
             DataContext = new LoginViewModel();
         }
 
-      /*  private void loginBtn_Click(object sender, RoutedEventArgs e)
+        private void password_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            Window window = new WelcomeWindow();
-            window.Show();
-            this.Close();
-        }*/
+
+        }
+
+        /*  private void loginBtn_Click(object sender, RoutedEventArgs e)
+          {
+              Window window = new WelcomeWindow();
+              window.Show();
+              this.Close();
+          }*/
     }
 }

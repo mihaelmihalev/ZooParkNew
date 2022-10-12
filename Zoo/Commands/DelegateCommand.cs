@@ -11,14 +11,13 @@ namespace Zoo.Commands
     {
         readonly Action<object> execute;
         readonly Predicate<object> canExecute;
-        
+        public event EventHandler? CanExecuteChanged;
+
 
         public DelegateCommand(Predicate<object> canExecute, Action<object> execute) => 
             (this.canExecute, this.execute) = (canExecute, execute);
         public DelegateCommand(Action<object> execute) : this(null, execute) { }
-
-        public event EventHandler? CanExecuteChanged;
-
+        
         public void RaiseCanExecuteChanged() => this.CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 
 

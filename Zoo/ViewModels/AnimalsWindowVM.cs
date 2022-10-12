@@ -161,12 +161,15 @@ namespace Zoo.ViewModels
 
         private void FillCategories()
         {
+            
             Categories = animalDbContext.Animals.GroupBy(animal => animal.Category).Select(a =>a.First()).ToList();
+            
         }
 
 
         private void GetAnimalByCategory()
         {
+            
             Animals = (from a in animalDbContext.Animals where a.Category.Equals(SelectedCategory.Category) select a).ToList(); //.Distinct();
         }
 
