@@ -119,20 +119,14 @@ namespace Zoo.ViewModels
             
             get
             {
-                
-                return searchEventsByTypeCommand ?? (searchEventsByTypeCommand = new DelegateCommand((о) =>
-                {
-                    GetsAndFillsEvents();
-                }));
+                return searchEventsByTypeCommand ?? (searchEventsByTypeCommand = new DelegateCommand(GetsAndFillsEvents)) ;                                                    
             }
         }
-       
-         
         #endregion
 
         #region Methods
 
-        private void GetsAndFillsEvents()
+        private void GetsAndFillsEvents(object a)
         {
             IsListViewVisible = true;
             IsTextBoxVisible = false;

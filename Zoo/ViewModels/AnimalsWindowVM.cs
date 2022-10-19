@@ -39,7 +39,7 @@ namespace Zoo.ViewModels
             isTextBoxVisible = false;
             isListViewVisible = false;
             FillCategories();             
-            // FillAnimalData();
+            //FillAnimalData();
         }
         #endregion
 
@@ -130,17 +130,13 @@ namespace Zoo.ViewModels
         {
             get
             {
-                return searchAnimalsByCategoryCommand ?? (searchAnimalsByCategoryCommand = new DelegateCommand((o) =>
-                {
-                    GetAndFillAnimals();
-                }));
+                return searchAnimalsByCategoryCommand ?? (searchAnimalsByCategoryCommand = new DelegateCommand(GetAndFillAnimals));
             }
-        }
-          
+        }          
         #endregion
         
         #region Methods
-        private void GetAndFillAnimals()
+        private void GetAndFillAnimals(object a)
         {
             IsListViewVisible = true;
             IsTextBoxVisible = false;
@@ -163,6 +159,8 @@ namespace Zoo.ViewModels
         {
             
             Categories = animalDbContext.Animals.GroupBy(animal => animal.Category).Select(a =>a.First()).ToList();
+            /*Animal animal = new..
+            Categories.Add()*/
             
         }
 

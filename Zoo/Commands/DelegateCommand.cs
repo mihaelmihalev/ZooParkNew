@@ -17,6 +17,7 @@ namespace Zoo.Commands
         public DelegateCommand(Predicate<object> canExecute, Action<object> execute) => 
             (this.canExecute, this.execute) = (canExecute, execute);
         public DelegateCommand(Action<object> execute) : this(null, execute) { }
+
         
         public void RaiseCanExecuteChanged() => this.CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 

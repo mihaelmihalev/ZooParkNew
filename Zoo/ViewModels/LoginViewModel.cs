@@ -1,7 +1,7 @@
 ﻿
 //using MongoDB.Driver.Core.Configuration;
 using Microsoft.Data.SqlClient;
-using Prism.Commands;
+using Zoo.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,40 +27,37 @@ namespace Zoo
         #endregion
 
         #region Commands
-        public ICommand LoginCommand
+
+        private void CheckUser(object a)
         {
-            get
+            if (String.IsNullOrEmpty(username))
             {
-                return loginCommand ?? (loginCommand = new DelegateCommand(() =>
+                MessageBox.Show("Моля, въведете име!");
+            }
+            else if (String.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Моля, въведете парола!");
+            }
+            else
+            {
+
+                user = userDbContext.Users.FirstOrDefault(u => u.Username == Username && u.Password == Password);
+
+                if (user != null)
                 {
-                    if (String.IsNullOrEmpty(username))
-                    {
-                        MessageBox.Show("Моля, въведете име!");
-                    }
-                    else if (String.IsNullOrEmpty(password))
-                    {
-                        MessageBox.Show("Моля, въведете парола!");
-                    }
-                    else
-                    {
-                        
-                        user = userDbContext.Users.FirstOrDefault(u => u.Username == Username && u.Password == Password);
-
-                        if (user != null)
-                        {
-                            Window window = new WelcomeWindow();
-                            window.Show();
-                            System.Windows.Application.Current.MainWindow.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Грешни данни за вход!");
-                        }
-                    }
-                }));
-
+                    Window window = new WelcomeWindow();
+                    window.Show();
+                    System.Windows.Application.Current.MainWindow.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Грешни данни за вход!");
+                }
             }
         }
+
+        public ICommand LoginCommand=> loginCommand ?? (loginCommand = new DelegateCommand(CheckUser));
+
         #endregion
 
         #region Properties

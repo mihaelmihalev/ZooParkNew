@@ -8,13 +8,11 @@ using Zoo.Models;
 
 namespace Zoo
 {
-    public class EventDbContext : Microsoft.EntityFrameworkCore.DbContext
+    public class EventDbContext : DbContext
     {
-
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             // connect to mysql with connection string from app settings
-
             options.UseSqlServer(@"Data Source=.\SQLEXPRESS00;Initial Catalog=ZooPark;Integrated Security=True");
         }
         public DbSet<Event> Events { get; set; }

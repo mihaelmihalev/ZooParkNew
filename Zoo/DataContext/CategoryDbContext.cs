@@ -8,21 +8,15 @@ using Zoo.Models;
 
 namespace Zoo
 {
-    public class CategoryDbContext : Microsoft.EntityFrameworkCore.DbContext
+    public class CategoryDbContext : DbContext
     {
-
-
-        public CategoryDbContext()
-        {
-
-        }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             // connect to mysql with connection string from app settings
 
             options.UseSqlServer(@"Data Source=.\SQLEXPRESS00;Initial Catalog=ZooPark;Integrated Security=True");
         }
-        public Microsoft.EntityFrameworkCore.DbSet<Category> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
 

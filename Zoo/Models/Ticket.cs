@@ -8,13 +8,17 @@ namespace Zoo.Models
 {
     public class Ticket
     {
+        #region Properties
         public int Id { get; set; } 
         public string Type { get; set; }
         public decimal Price { get; set; }
+        #endregion
 
+        #region Methods
         public override string ToString()
         {
             return Type.ToString();
         }
+        #endregion
     }
 }

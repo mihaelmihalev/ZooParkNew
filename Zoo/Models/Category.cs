@@ -9,14 +9,19 @@ namespace Zoo.Models
 {
     public class Category
     {
+        #region Properties
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-       
+
+        #endregion
+
+        #region Methods
         public override string ToString()
         {
             return Name.ToString();
         }
+        #endregion
     }
 }
 

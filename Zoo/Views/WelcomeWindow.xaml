@@ -43,7 +43,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Style="{StaticResource WelcomeButtons}"
-                    Name="btnAnimals"                                                             
+                    Name="btnAnimals"   
                     Grid.Column="0"                   
                     VerticalAlignment="Top"                    
                     Command="{Binding UpdateViewCommand}"
